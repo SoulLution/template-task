@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="topbar">
-      <router-link class="logo" to="/">
+      <router-link class="logo" :class="{back: isChildView}" to="/">
         <img src="@/assets/logo.png" alt="">
       </router-link>
       <div class="right" v-if="profile">
@@ -18,6 +18,9 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters("profile", { profile: "getUser" }),
+    isChildView() {
+      return this.$route.name === "template"
+    }
   },
   methods: {
     ...mapActions("profile", ["logout"])
@@ -59,6 +62,12 @@ export default {
     align-items: center;
     & img {
       height: 90px;
+      transition: 0.3s;
+    }
+    &.back {
+      & img {
+        transform: rotate(90deg);
+      }
     }
   }
 }

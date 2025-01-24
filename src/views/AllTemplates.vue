@@ -3,6 +3,12 @@
     <div class="topbar">
         <input type="text" class="search" placeholder="search" v-model="search.name">
         <v-select :options="tags" multiple v-model="search.tags"></v-select>
+        <div class="spacer" />
+        <router-link :to="{name: 'template', params: { id: 'new'}}">
+            <button>
+                Create +
+            </button>
+        </router-link>
     </div>
     <div class="content" ref="main" @scroll="checkScroll">
         <div class="template" v-for="template in templates" :key="template.id">
@@ -142,6 +148,12 @@ export default {
         height: 24px;
         margin-right: 1rem;
         margin-bottom: 0;
+    }
+    & .spacer {
+        width: 100%;
+    }
+    & a {
+        text-wrap: nowrap;
     }
 }
 </style>
